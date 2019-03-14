@@ -17,10 +17,8 @@ public class UserController {
     public PasswordEncoder passwordEncoder;
 
     public UserController(UserService userService, PasswordEncoder passwordEncoder){
-
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
-
     }
 
     @GetMapping("/getAllUsers")
@@ -29,18 +27,18 @@ public class UserController {
     }
 
     @PostMapping("/createNewUser")
-    public ResponseEntity<String> createNewUser(
+    public ResponseEntity<User> createNewUser(
             @RequestParam String email,
             @RequestParam String username,
             @RequestParam String password){
 
-        userService.createNewUser(email, username, new Date(), password);
-        return ResponseEntity.ok("User Created");
+        User savedUser = userService.createNewUser(email, username, new Date(), password);
+        return ResponseEntity.ok(savedUser);
     }
 
     @PostMapping("/mockLogIn")
-    public ResponseEntity<User> mockLogIn(@RequestParam String username, @RequestParam String password){
-        return ResponseEntity.ok(userService.mockLogIn(username, password));
+    public ResponseEntity<String> mockLogIn(@RequestParam String username, @RequestParam String password, @RequestParam(required = false) String usersCurrentToken){
+        return ResponseEntity.ok(userService.mockLogIn(username, password, usersCurrentToken));
     }
 
 }
