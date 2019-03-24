@@ -35,17 +35,21 @@ public class NewUserManager {
         if (newUserValidationResponse.isUsernameExists() || newUserValidationResponse.isEmailExists() || !newUserValidationResponse.isValidPassword()){
             newUserRegistrationResponse.setValidationResponse(newUserValidationResponse);
             newUserRegistrationResponse.setRegistered(false);
-            newUserRegistrationResponse.setUser(newUser);
-
+            newUserRegistrationResponse.setUser(null);
             return newUserRegistrationResponse;
         }
         else {
+            // SAVE USER TO DB
+
+
             newUserRegistrationResponse.setRegistered(true);
             newUserRegistrationResponse.setValidationResponse(newUserValidationResponse);
-            newUserRegistrationResponse.setUser(newUser);
+            newUserRegistrationResponse.setUser(userService.persistNewUser(newUser));
 
             return newUserRegistrationResponse;
         }
     }
+
+
 
 }

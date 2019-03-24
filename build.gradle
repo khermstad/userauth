@@ -34,7 +34,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     compile "io.springfox:springfox-swagger2:2.9.2"
     compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    compile 'de.mkammerer:argon2-jvm:2.5'
 }
+
+
 
 test {
     useJUnitPlatform()

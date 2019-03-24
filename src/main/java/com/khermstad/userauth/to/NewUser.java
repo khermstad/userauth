@@ -1,10 +1,9 @@
 package com.khermstad.userauth.to;
 
+import com.khermstad.userauth.entity.User;
 import lombok.Data;
 
-@Data
-public class NewUser {
-    String email;
-    String username;
-    String password;
+
+public class NewUser extends User {
+
 }
