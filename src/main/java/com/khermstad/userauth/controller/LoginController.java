@@ -3,11 +3,9 @@ package com.khermstad.userauth.controller;
 import com.khermstad.userauth.manager.LoginManager;
 import com.khermstad.userauth.service.UserService;
 import com.khermstad.userauth.to.UserLogin;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import com.khermstad.userauth.to.UserLoginResponse;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,8 +20,8 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestBody UserLogin userLogin){
-        return "" + loginManager.verifyUserLogin(userLogin);
+    public UserLoginResponse login(@RequestBody UserLogin userLogin){
+        return loginManager.verifyUserLogin(userLogin);
     }
 
 }

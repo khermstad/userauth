@@ -7,16 +7,20 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
     private UserRepository userRepository;
+    private Argon2 argon2;
 
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, Argon2 argon2){
         this.userRepository = userRepository;
+        this.argon2 = argon2;
     }
 
     public Optional<User> getUser(String username){
@@ -28,6 +32,7 @@ public class UserService {
         user.setUsername(newUser.getUsername());
         user.setEmail(newUser.getEmail());
         user.setPassword(encryptPassword(newUser.getPassword()));
+        user.setDateRegistered(new Timestamp(new Date().getTime()));
         return userRepository.save(user);
     }
 
@@ -59,8 +64,7 @@ public class UserService {
     }
 
     public String encryptPassword(String password){
-        Argon2 argon2 = Argon2Factory.create();
-        String hashword = argon2.hash(10, 65536, 1, password);
+        String hashword = argon2.hash(5, 65536, 1, password);
         return hashword;
     }
 

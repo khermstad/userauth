@@ -1,4 +1,11 @@
 spring:
-  h2:
-    console:
-      enabled: true
+  datasource:
+    url: jdbc:postgresql://khdb.cmkvynpfrltv.us-east-1.rds.amazonaws.com:5432/postgres
+    username: khermstad
+    password: Pdigms1986
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+

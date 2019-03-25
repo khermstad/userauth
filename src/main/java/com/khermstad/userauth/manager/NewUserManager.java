@@ -39,17 +39,10 @@ public class NewUserManager {
             return newUserRegistrationResponse;
         }
         else {
-            // SAVE USER TO DB
-
-
             newUserRegistrationResponse.setRegistered(true);
             newUserRegistrationResponse.setValidationResponse(newUserValidationResponse);
             newUserRegistrationResponse.setUser(userService.persistNewUser(newUser));
-
             return newUserRegistrationResponse;
         }
     }
-
-
-
 }
