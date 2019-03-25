@@ -33,6 +33,7 @@ public class UserService {
         user.setEmail(newUser.getEmail());
         user.setPassword(encryptPassword(newUser.getPassword()));
         user.setDateRegistered(new Timestamp(new Date().getTime()));
+        user.setActive('N');
         return userRepository.save(user);
     }
 

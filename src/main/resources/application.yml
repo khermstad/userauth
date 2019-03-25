@@ -1,8 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://khdb.cmkvynpfrltv.us-east-1.rds.amazonaws.com:5432/postgres
+    url: jdbc:postgresql://35.192.116.86:5432/postgres
     username: khermstad
-    password: Pdigms1986
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:

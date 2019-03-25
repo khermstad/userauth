@@ -21,29 +21,19 @@ public class LoginManager {
     }
 
     public UserLoginResponse verifyUserLogin(UserLogin userLogin) {
-        UserLoginResponse userLoginResponse = new UserLoginResponse();
         Optional<User> user = userService.getUser(userLogin.getUsername());
         if (user.isPresent()){
             if(user.get().getActive() == 'N'){
-                userLoginResponse.setLoggedIn(false);
-                userLoginResponse.setResponse("not active");
-                return userLoginResponse;
+                return new UserLoginResponse(false, "Not Active", user.get());
             }
-
             if(verifyPassword(user.get().getPassword(), userLogin.getPassword())){
-                userLoginResponse.setLoggedIn(true);
-                userLoginResponse.setResponse("success");
-                return userLoginResponse;
+                return new UserLoginResponse(true, "Success", user.get());
             }
             else{
-                userLoginResponse.setLoggedIn(false);
-                userLoginResponse.setResponse("invalid password");
-                return userLoginResponse;
+                return new UserLoginResponse(false, "invalid password", user.get());
             }
         }
-        userLoginResponse.setLoggedIn(false);
-        userLoginResponse.setResponse("username not found");
-        return userLoginResponse;
+        return new UserLoginResponse(false, "username not found", null);
     }
 
     private boolean verifyPassword(String hashedPassword, String password){
