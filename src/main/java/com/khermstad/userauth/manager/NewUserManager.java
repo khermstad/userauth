@@ -7,7 +7,7 @@ import com.khermstad.userauth.to.NewUserValidationResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NewUserManager {
+public class    NewUserManager {
 
     private UserService userService;
 

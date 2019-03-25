@@ -3,6 +3,7 @@ package com.khermstad.userauth.controller;
 import com.khermstad.userauth.manager.NewUserManager;
 import com.khermstad.userauth.to.NewUser;
 import com.khermstad.userauth.to.NewUserRegistrationResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,8 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public NewUserRegistrationResponse registerNewUser(@RequestBody NewUser newUser){
-         return newUserManager.registerNewUser(newUser);
+    public ResponseEntity<NewUserRegistrationResponse> registerNewUser(@RequestBody NewUser newUser){
+         return ResponseEntity.ok(newUserManager.registerNewUser(newUser));
     }
 
 }

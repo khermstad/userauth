@@ -4,6 +4,7 @@ import com.khermstad.userauth.manager.LoginManager;
 import com.khermstad.userauth.service.UserService;
 import com.khermstad.userauth.to.UserLogin;
 import com.khermstad.userauth.to.UserLoginResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public UserLoginResponse login(@RequestBody UserLogin userLogin){
-        return loginManager.verifyUserLogin(userLogin);
+    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLogin userLogin){
+        return ResponseEntity.ok(loginManager.verifyUserLogin(userLogin));
     }
 
 }
